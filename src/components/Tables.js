@@ -1,12 +1,13 @@
 
 const Tables = (props) => {
+    const {tablename, table} = props;
     return (
 
         <div>
-            <h1>Times Table - {props.tablename}</h1>
+            <h1>Times Table - {tablename}</h1>
             <table id="timestable" align="center">
                 {
-                    props.table.map((tablecontent) => (
+                    table.map((tablecontent) => (
                         <tr>
                             <td>{props.tablename}</td>
                             <td>x</td>

@@ -3,9 +3,9 @@ import './App.css';
 import Tables from './components/Tables';
 
 function App() {
-  const [table, setTable] = useState(0)
-  const [display, setDisplay] = useState(0);
-  const [tables, setTables] = useState(0);
+  const [table, setTable] = useState()
+  const [display, setDisplay] = useState();
+  const [tables, setTables] = useState(undefined);
 
   const timeTables = (table, upto = 10) => {
     let generate = []
@@ -19,8 +19,10 @@ function App() {
       let currentRender = true;
       setTimeout(() => {
         if(currentRender) {
-          setTables(timeTables(table));
-          setDisplay(table);
+          if(table !== "" || table !== undefined) {
+            setTables(timeTables(table));
+            setDisplay(table);
+          }
         }
       }, 1000)
       
@@ -30,8 +32,8 @@ function App() {
   }, [table])
   return (
     <div className="App">
-      <input type="number" min="0" id="table" onChange={(e) => setTable(e.target.value)} />
-      {display !== "" && <Tables tablename={display} table={tables} />}
+      Enter the Times Tables No : <input type="number" min="0" id="table" onChange={(e) => setTable(e.target.value)} />
+      {(display !== "" && display !== undefined && tables !== undefined ) && <Tables tablename={display} table={tables} />}
     </div>
   );
 }
